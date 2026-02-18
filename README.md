@@ -1,186 +1,123 @@
-🚀 Road Condition Classification Using CNN
-<p align="center"> <b>Deep Learning-based Road Quality Assessment System</b><br> CNN + Transfer Learning (MobileNetV2) </p>
-📌 Overview
+<p align="center">
+  <h1 align="center">Road Condition Classification</h1>
+  <h3 align="center">Deep Learning-Based Road Quality Assessment</h3>
+</p>
 
-This project focuses on classifying road conditions into four categories using Deep Learning techniques.
+<p align="center">
+  <b>CNN • Transfer Learning • Image Classification • AI-Powered</b>
+</p>
 
-Two models were implemented:
+---
 
-🧠 Custom Convolutional Neural Network (CNN)
+## 📌 Overview
 
-🚀 Transfer Learning using MobileNetV2
+**Road Condition Classification** is a Deep Learning-based image classification system designed to automatically detect and categorize road quality from images.
 
-The system automatically evaluates road surface quality from images and classifies them into:
+The system classifies roads into four categories:
 
-✅ Good
+- **Good**
+- **Satisfactory**
+- **Poor**
+- **Very Poor**
 
-⚠️ Satisfactory
+This solution supports intelligent road maintenance planning and improves transportation safety using AI-driven automation.
 
-❗ Poor
+---
 
-🚨 Very Poor
+## 🎯 Objectives
 
-This solution can assist transportation authorities and smart city systems in prioritizing road maintenance and improving safety.
+- Build a Convolutional Neural Network (CNN) model.
+- Implement Transfer Learning using **MobileNetV2**.
+- Improve model generalization using data augmentation.
+- Evaluate performance using accuracy and confusion matrix.
+- Enable deployment for real-world monitoring systems.
 
-✨ Key Highlights
+---
 
-Built custom CNN from scratch
+## 📂 Dataset
 
-Implemented transfer learning using MobileNetV2
+- Source: Kaggle – Road Damage Classification Dataset  
+- Total Classes: **4**
+  - Good
+  - Satisfactory
+  - Poor
+  - Very Poor
+- Separate **Training** and **Testing** directories
+- Images resized according to model architecture
 
-Applied data augmentation for better generalization
+---
 
-Evaluated performance using accuracy & confusion matrix
+## 🧠 Model 1 – Custom CNN
 
-Developed prediction pipeline for real-time inference
+### 🔹 Input Shape
+`64 x 64 x 3`
 
-Compared base CNN vs pre-trained architecture
+### 🔹 Architecture
+- Conv2D (32 filters) + MaxPooling  
+- Conv2D (64 filters) + MaxPooling  
+- Conv2D (128 filters) + MaxPooling  
+- Dense (64 neurons, ReLU)  
+- Dense (32 neurons, ReLU)  
+- Output Layer (4 neurons, Softmax)
 
-🎯 Project Objectives
+### 🔹 Training Configuration
+- **Optimizer:** Adam  
+- **Loss Function:** Sparse Categorical Crossentropy  
+- **Batch Size:** 32  
+- **Epochs:** 30  
 
-Develop an image classification model using CNN
+---
 
-Implement Transfer Learning using MobileNetV2
+## 🚀 Model 2 – MobileNetV2 (Transfer Learning)
 
-Improve model robustness with data augmentation
+### 🔹 Input Shape
+`224 x 224 x 3`
 
-Evaluate performance using confusion matrix
+### 🔹 Architecture
+- Pre-trained **MobileNetV2** (without top layers)
+- Global Average Pooling
+- Dense (128 neurons, ReLU)
+- Dropout (0.5)
+- Output Layer (4 neurons, Softmax)
 
-Enable scalable deployment for road monitoring systems
+### 🔹 Training Configuration
+- **Optimizer:** Adam (Learning Rate: 0.001)
+- **Loss Function:** Categorical Crossentropy
+- **Batch Size:** 16
+- **Epochs:** 10
 
-📂 Dataset
+---
 
-Source: Kaggle – Road Damage Classification Dataset
+## 📊 Model Evaluation
 
-Classes: Good, Satisfactory, Poor, Very Poor
+- Performance Metric: **Accuracy**
+- Confusion Matrix generated for class-wise analysis
+- Minor misclassifications observed (scope for improvement)
 
-Structured into separate training and testing folders
+---
 
-Images resized according to model input requirements
+## 💾 Model Files
 
-🧠 Model Architectures
-🔹 Model 1: Custom CNN
-📥 Input Shape
+- `road_damage_model.h5`
+- `road_condition_model2.h5`
 
-64 × 64 × 3
+---
 
-🏗 Architecture
+## 🛠 Tech Stack
 
-Conv2D (32 filters) + MaxPooling
+- **Python**
+- **TensorFlow**
+- **Keras**
+- **NumPy**
+- **Matplotlib**
+- **Transfer Learning (MobileNetV2)**
 
-Conv2D (64 filters) + MaxPooling
+---
 
-Conv2D (128 filters) + MaxPooling
+## 🔮 Future Improvements
 
-Dense (64 neurons, ReLU)
-
-Dense (32 neurons, ReLU)
-
-Output Layer (4 neurons, Softmax)
-
-⚙ Training Configuration
-
-Optimizer: Adam
-
-Loss: Sparse Categorical Crossentropy
-
-Batch Size: 32
-
-Epochs: 30
-
-🔹 Model 2: MobileNetV2 (Transfer Learning)
-📥 Input Shape
-
-224 × 224 × 3
-
-🏗 Approach
-
-Pre-trained MobileNetV2 (without top layers)
-
-Frozen convolutional base
-
-Global Average Pooling
-
-Dense (128 neurons, ReLU)
-
-Dropout (0.5)
-
-Output Layer (4 neurons, Softmax)
-
-⚙ Training Configuration
-
-Optimizer: Adam (learning rate = 0.001)
-
-Loss: Categorical Crossentropy
-
-Batch Size: 16
-
-Epochs: 10
-
-📊 Model Evaluation
-
-Accuracy used as primary performance metric
-
-Confusion Matrix generated for class-wise analysis
-
-Minor misclassifications observed
-
-Transfer Learning model outperformed custom CNN
-
-📈 Results
-
-Both models achieved promising classification performance.
-
-The MobileNetV2 transfer learning model demonstrated improved generalization and higher accuracy due to leveraging pre-trained feature representations.
-
-💾 Model Artifacts
-
-road_damage_model.h5 (Custom CNN)
-
-road_condition_model2.h5 (MobileNetV2)
-
-Prediction pipeline implemented for testing new road images.
-
-🛠 Tech Stack
-
-Python
-
-TensorFlow
-
-Keras
-
-NumPy
-
-Matplotlib
-
-ImageDataGenerator
-
-Transfer Learning (MobileNetV2)
-
-🚀 Deployment Scope
-
-The trained model can be integrated into:
-
-Smart City Infrastructure
-
-Automated Road Inspection Systems
-
-Drone-based Monitoring
-
-AI-powered Traffic Safety Systems
-
-🔮 Future Improvements
-
-Increase dataset size for better generalization
-
-Fine-tune pre-trained MobileNetV2 layers
-
-Experiment with ResNet50 / EfficientNet
-
-Deploy as Web Application
-
-Implement real-time road monitoring
-
-🌍 Real-World Impact
-
-This system enables scalable road condition assessment, reducing manual inspection effort and supporting data-driven infrastructure planning.
+- Increase dataset size for better generalization
+- Fine-tune pre-trained layers
+- Experiment with ResNet50 / EfficientNet
+- Deploy as a web application
+- Implement real-time monitoring system
